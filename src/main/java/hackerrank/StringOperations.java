@@ -9,7 +9,7 @@ public class StringOperations {
 
     public static void main(String args[]){
         //isStringReverse();
-        boolean isAnagram = isAnagramUsingTwoMaps("madam", "mmaadm");
+        boolean isAnagram = isAnagramUsingTwoMaps("madam", "maadm");
         if(isAnagram) System.out.println("Anagram");
         else System.out.println("Not Anagrams");
         List<String> permutations = getPermutations("world");
@@ -51,8 +51,12 @@ public class StringOperations {
      */
     static boolean isAnagramUsingTwoMaps(String A, String B) {
         //Complete the function
-        if(A == null || B == null && A.length() != B.length())
+        if(A == null || B == null){
             return false;
+        }
+        if(A.length() != B.length()){
+            return false;
+        }
         char[] charArr1 = A.toLowerCase().toCharArray();
         char[] charArr2 = B.toLowerCase().toCharArray();
         Map<Character,Integer> charMap1 = new HashMap<>();
@@ -71,6 +75,43 @@ public class StringOperations {
         System.out.println("charMap2" + charMap2);
         for(char key : charMap1.keySet()){
             if(charMap1.get(key)!= charMap2.get(key))
+                return false;
+        }
+        return true;
+    }
+
+    /** hacker rank
+     * This will compare 2 Strings to check if they are Anagrams that is defined as having
+     * the same characters in the same frequency
+     * Note: same as isAnagramUsingTwoMaps, but uses only one HashMap
+     * @param A
+     * @param B
+     * @return
+     */
+    public static boolean isAnagramUsingOneMap(String A, String B) {
+        //Complete the function
+        if(A == null || B == null){
+            return false;
+        }
+        if(A.length() != B.length()){
+            return false;
+        }
+        char[] charArr1 = A.toLowerCase().toCharArray();
+        char[] charArr2 = B.toLowerCase().toCharArray();
+        Map<Character,Integer> charMap1 = new HashMap<>();
+        for(int i=0; i< charArr1.length; i++){
+            char key1 = charArr1[i];
+            // if the char from the first array is found then add +1 to the value, else assign 1
+            int value1 = (charMap1.containsKey(key1) ? charMap1.get(key1)+1 : 1);
+            charMap1.put(key1, value1);
+            char key2 = charArr2[i];
+            // if the char from the second array is found then subtract 1 to the value, else assign -1
+            int value2 = (charMap1.containsKey(key2) ? charMap1.get(key2)-1 : -1);
+            charMap1.put(key2, value2);
+        }
+        System.out.println("charMap1 = " + charMap1);
+        for(char key : charMap1.keySet()){
+            if(charMap1.get(key)!= 0)
                 return false;
         }
         return true;

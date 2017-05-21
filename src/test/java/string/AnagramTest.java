@@ -1,5 +1,6 @@
 package string;
 
+import hackerrank.StringOperations;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,6 @@ public class AnagramTest {
 
     @Test
     public void testIsAnagramUsingOneMap() throws Exception {
-        Assert.assertEquals("Passed" ,true, Anagram.isAnagramUsingOneMap(str1, str2));
+        Assert.assertEquals("Passed" ,true, StringOperations.isAnagramUsingOneMap(str1, str2));
     }
 }

@@ -9,21 +9,29 @@ import sun.misc.BASE64Encoder;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Base64EncodeSalt {
 
     private static Random rand = new Random((new Date()).getTime());
+    private static BASE64Encoder base64Encoder = new BASE64Encoder();
 
     public static void main(String[] args) throws Exception {
 
-        String st = "Success86@sndbox";
+        String st = "HelloWorld";
 
         String enc = encrypt(st);
 
         System.out.println("Encrypted string :" + enc);
 
         System.out.println("Decrypted string :" + decrypt(enc));
-
+        System.out.println("Enter a string to base64encode. Type exit or quit to quit");
+        Scanner scanner = new Scanner(System.in);
+        String inputStr = null;
+        while(!(inputStr = scanner.next()).equalsIgnoreCase("exit")){
+            System.out.println("base64encoding : " +
+                    base64Encoder.encode(inputStr.getBytes()));
+        }
     }
 
     public static String encrypt(String str) {
