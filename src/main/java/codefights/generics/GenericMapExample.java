@@ -1,14 +1,15 @@
 package codefights.generics;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-import org.junit.Test;
-
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.junit.Test;
+
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 
 /**
  * Created by srikanth.kannan on 5/31/16.
@@ -71,19 +72,19 @@ public class GenericMapExample {
                 for(int i=0; i <valuesSizeForKeyMap1; i++){
                     String value1 = valuesForKeyMap1.get(i);
                     String value2 = valuesForKeyMap2.get(i);
+                    boolean thisResult;
                     if(value1.contains(".")){//to identify a floating/Double
                         BigDecimal bigDecimal1 = new BigDecimal(value1).setScale(roundingPlaces, BigDecimal.ROUND_HALF_UP);
                         BigDecimal bigDecimal2 = new BigDecimal(value2).setScale(roundingPlaces, BigDecimal.ROUND_HALF_UP);
                         int compareResult = bigDecimal1.compareTo(bigDecimal2);
-                        boolean thisResult = compareResult == 0 ? true : false;
+                        thisResult = compareResult == 0 ? true : false;
                         System.out.println(key + " = " + bigDecimal1 + " | " + bigDecimal2 + " | compareResult = " + thisResult);
-                        overallResult = overallResult && thisResult;
                     }
                     else{
-                        boolean thisResult = value1.equals(value2);
-                        overallResult = overallResult && thisResult ;
+                        thisResult = value1.equals(value2);
                         System.out.println(key + " = " + value1 + " | " + value2 + " | compareResult = " + thisResult);
                     }
+                    overallResult = overallResult && thisResult;
                 }//for
             }
             else{
