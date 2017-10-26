@@ -10,7 +10,7 @@ public class BigDecimalExample {
 
     public static void main(String[] args) {
         compareBigDecimal("2889498.7", "2918393.687", 0, 1);
-
+        longToBigDecimal("25");
     }
 
     /**
@@ -49,5 +49,10 @@ public class BigDecimalExample {
             System.out.println("diff % is > " + thresholdPercentForDiff);
         }
         return compareResult;
+    }
+
+    public static void longToBigDecimal(String longNumber) {
+        Long aLong = new Long("25");
+        System.out.println("BigDecimal Value of" + longNumber + " = " + BigDecimal.valueOf(aLong));
     }
 }
