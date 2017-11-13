@@ -1,6 +1,7 @@
 package regex;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -19,5 +20,16 @@ public class PatternMatcher {
             System.out.println("matches = " +  pattern.matcher(input).matches());
         }
         scanner.close();
+    }
+
+    private void testUrlPattern(){
+        String[] sites = new String[] { "www1.google.com", "www.google2.co", "www.google.com/maps/" };
+        Pattern pattern = Pattern.compile("^[a-z,A-Z\\d]{3,4}\\.\\w*\\.[a-z,A-z]{2,}(/.*)*");
+        for (String s : sites) {
+            Matcher matcher = pattern.matcher(s);
+            if (matcher.matches()) { // find of it matches
+                System.out.println(matcher.group());
+            }
+        }
     }
 }

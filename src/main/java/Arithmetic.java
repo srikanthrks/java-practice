@@ -116,4 +116,24 @@ public class Arithmetic {
         return fact;
     }
 
+    /**
+     * find if the digits ina given number is sorted in
+     * @param n
+     * @return
+     */
+    public static boolean isSorted(int n){ // ascending - 12345
+        int nextDigit = n%10; // 1st 5
+        n = n/10;// 1234
+        // loop until it is po
+        while(n>0){
+            int currDigit = n%10;// 1
+            if(currDigit > nextDigit) // 1 < 2 -
+                return false;
+            nextDigit = currDigit; // 1
+            n = n/10; // 1
+        }
+        return true;
+
+    }
+
 }
