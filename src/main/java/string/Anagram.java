@@ -18,7 +18,7 @@ public class Anagram {
 //        if(isAnagram) System.out.println("Anagram");
 //        else System.out.println("Not Anagrams");
         //System.out.println("isPalindrome = " + isPalindrome("madam", "mmaad"));
-        System.out.println("make Anagram = " + numberNeededToMakeAnagram("cdesd", "aaaaa"));
+        System.out.println("make Anagram = " + numberNeededToMakeAnagram2("cdesd", "aaaaa"));
 
     }
 
@@ -134,15 +134,15 @@ public class Anagram {
         int deleteCount = 0;
         char[] firstArray = first.toLowerCase().toCharArray();
         char[] secondArray = second.toLowerCase().toCharArray();
-        int [] freq = new int[26];//alphabets
+        int [] freqArr = new int[26];//alphabets
         for(char c : firstArray){
-            freq[c - 'a'] ++;
+            freqArr[c - 'a'] ++; // increase the count of the character. 'c' - 'a' = (99 - 97) ASCII value
         }
         for(char c : secondArray){
-            freq[c - 'a'] --;
+            freqArr[c - 'a'] --; // decrease the count of the character
         }
-        for(int i : freq){
-            deleteCount++;
+        for(int charFreq : freqArr){
+            deleteCount += Math.abs(charFreq); // get the absolute value of the frequency
         }
         return deleteCount;
     }
